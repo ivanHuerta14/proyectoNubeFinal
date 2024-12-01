@@ -37,6 +37,7 @@ function loadSongs() {
         }
     });
 }
+
 function addSong() {
     const nombre = prompt("Nombre de la canción:");
     const autor = prompt("Autor:");
@@ -47,37 +48,19 @@ function addSong() {
         $.ajax({
             url: 'api.php?action=create',
             method: 'POST',
-            cache: false,
             data: {
                 nombre: nombre,
                 autor: autor,
                 duracion: duracion,
                 album: album
             },
-            success: function(response) {
-                console.log('Canción agregada con éxito:', response);
-
-                const newRow = `
-                    <tr id="row-${response.id}" style="display: none;">
-                        <td>${nombre}</td>
-                        <td>${autor}</td>
-                        <td>${duracion}</td>
-                        <td>${album}</td>
-                        <td>
-                            <button onclick="editSong(${response.id})">Editar</button>
-                            <button onclick="deleteSong(${response.id})">Eliminar</button>
-                        </td>
-                    </tr>
-                `;
-
-                $("#dataTable tbody").prepend(newRow);
-                $(`#row-${response.id}`).fadeIn(1500);
-            },
+            success: loadSongs, // Llama a loadSongs para recargar la tabla
             error: function(error) {
                 console.error('Error al agregar la canción:', error);
-                alert("No se pudo agregar la canción. Inténtalo de nuevo.");
             }
         });
+    } else {
+        alert("Todos los campos son obligatorios.");
     }
 }
 
