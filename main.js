@@ -5,7 +5,7 @@ let sortOrder = 'ASC';
 
 function loadSongs() {
     searchQuery = $('#searchInput').val() || '';
-    
+    console.log(`El valor de búsqueda es: "${searchQuery}"`);
     $.ajax({
          url: `api.php?action=read&search=${searchQuery}&column=${sortColumn}&order=${sortOrder}&page=${currentPage}`,
         method: 'GET',
