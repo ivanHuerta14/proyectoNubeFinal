@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscador de Música</title>
+    <!-- Incluir CSS -->
+    <link rel="stylesheet" href="css/sstyles.css">
+    <!-- Incluir jQuery y jQuery UI -->
+   
+
+</head>
+<body onload="loadSongs();">
+    <h1>Conceptualización de servicios en la nube</h1>
+    <h2>PI. Aplicación web dinámica en un servicio de la nube</h2>
+    <h2>Maestro: Silva Mares Oscar Gregorio</h2>
+    <h2>Alumno: Christian Ivan Huerta Martínez</h2>
+   
+<!-- Sección de Servicios en la Nube -->
+<div class="cloud-services">
+    <h1>Servicios en la Nube</h1>
+    <div class="services-container">
+        <div class="service-card">
+            <h2>Spotify</h2>
+            <p>Música en streaming con millones de canciones, podcasts y recomendaciones personalizadas.</p>
+            <a href="https://aws.amazon.com" target="_blank" class="btn">Spotity</a>
+        </div>
+        <div class="service-card">
+            <h2>Amazon Music</h2>
+            <p>Biblioteca amplia de canciones con integración con el ecosistema de Amazon.</p>
+            <a href="https://music.amazon.com.mx/" target="_blank" class="btn">Amazon Music</a>
+        </div>
+        <div class="service-card">
+            <h2>Apple Music</h2>
+            <p> Experiencia musical fluida en dispositivos Apple y soporte para canciones sin pérdida.</p>
+            <a href="https://music.apple.com/mx/new" target="_blank" class="btn">Apple Music</a>
+        </div>
+        <div class="service-card">
+            <h2>Youtube Music</h2>
+            <p>Mezcla de música en streaming y videos musicales, ideal para los fans de YouTube.</p>
+            <a href="https://music.youtube.com/" target="_blank" class="btn">Youtube Music</a>
+        </div>
+        <div class="service-card">
+            <h2>Deezer</h2>
+            <p>Radio en vivo y playlists personalizadas según tus preferencias.</p>
+            <a href="https://www.deezer.com/mx/offers" target="_blank" class="btn">Deezer</a>
+        </div>
+        <div class="service-card">
+            <h2>Tidal</h2>
+            <p> Calidad de sonido Hi-Fi y contenido exclusivo para melómanos.</p>
+            <a href="https://tidal.com/" target="_blank" class="btn">Tidal</a>
+        </div>
+    </div>
+</div>
+    <!-- Input de búsqueda -->
+ <h1>Listado de Canciones</h1>
+    <input type="text" id="searchInput" placeholder="Buscar canciones, autores o álbumes..." oninput="loadSongs()">
+    <button onclick="addSong()">Agregar Canción</button>
+
+    <!-- Tabla -->
+    <div class="container">
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th onclick="sortTable('nombre')">Nombre</th>
+                    <th onclick="sortTable('autor')">Autor</th>
+                    <th onclick="sortTable('duracion')">Duración</th>
+                    <th onclick="sortTable('album')">Álbum</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <!-- Paginación -->
+    <div class="pagination">
+        <a href="#" onclick="prevPage()">Anterior</a>
+        <a href="#" onclick="nextPage()">Siguiente</a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
+
+
