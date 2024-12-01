@@ -47,6 +47,7 @@ function addSong() {
         $.ajax({
             url: 'api.php?action=create',
             method: 'POST',
+            cache: false,
             data: {
                 nombre: nombre,
                 autor: autor,
