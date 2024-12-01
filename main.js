@@ -9,6 +9,7 @@ function loadSongs() {
     $.ajax({
          url: `api.php?action=read&search=${searchQuery}&column=${sortColumn}&order=${sortOrder}&page=${currentPage}`,
         method: 'GET',
+        cache: false,
         dataType: 'json',
         success: function(data) {
             const tbody = $("#dataTable tbody");
