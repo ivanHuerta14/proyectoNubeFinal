@@ -113,14 +113,30 @@ function deleteSong(id) {
     if (row.length) {
         row.css("background-color", "red");
         row.fadeOut(1500, function () {
+            // Después de animar la fila, enviamos la solicitud AJAX
             $.ajax({
                 url: 'api.php?action=delete',
                 method: 'POST',
                 data: { id: id },
                 success: function(response) {
-                    console.log('Canción eliminada del servidor:', response);
-                    showDialog("Canción eliminada correctamente.");
-                    loadSongs();
+                    try {
+                        const result = JSON.parse(response); // Asegúrate de que la respuesta es JSON
+                        if (result.success) {
+                            console.log('Canción eliminada del servidor:', result.message);
+                            showDialog("Canción eliminada correctamente.");
+                            
+                            // Usa un temporizador para dar tiempo al servidor antes de recargar
+                            setTimeout(() => {
+                                loadSongs();
+                            }, 1000); // 1 segundo de espera (ajusta según sea necesario)
+                        } else {
+                            console.error('Error al eliminar la canción del servidor:', result.message);
+                            showDialog(result.message || "Error al eliminar la canción.", true);
+                        }
+                    } catch (e) {
+                        console.error('Error procesando la respuesta del servidor:', response);
+                        showDialog("Error desconocido al eliminar la canción.", true);
+                    }
                 },
                 error: function(error) {
                     console.error('Error al eliminar la canción:', error);
@@ -132,6 +148,7 @@ function deleteSong(id) {
         console.warn(`No se encontró la fila con id #row-${id}`);
     }
 }
+
 
 function sortTable(column) {
     sortColumn = column;
